@@ -1,5 +1,5 @@
 
-#Load in functions to update streams
+#upload most recent version of spotifystreams package
 devtools::install_github("liamhaller/spotifystreams", force = TRUE, ref = "main")
 library(spotifystreams)
 
@@ -9,8 +9,22 @@ league
 #update leage streams
 league <- spotifystreams::update_streams(league)
 
-googlesheets4::gs4_deauth()
 
+# designate project-specific cache
+options(gargle_oauth_cache = ".secrets")
+# check the value of the option, if you like
+gargle::gargle_oauth_cache()
+
+
+# trigger auth on purpose to store a token in the specified cache
+# a broswer will be opened
+googlesheets4::gs4_auth(
+  cache = ".secrets",
+  email = "musicleaguefantasy@gmail.com"
+)
+
+gs4_deauth()
+gs4_has_token()
 
 spotifystreams::update_sheets(list = league, updated_coulmn = 4,
                               sheet_id = "1GtLYZJ3OcywTGT75LMIXJwogC5CJx_biGl5l0MuVLM4",
