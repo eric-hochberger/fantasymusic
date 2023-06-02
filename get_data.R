@@ -4,11 +4,38 @@ devtools::install_github("liamhaller/spotifystreams", force = TRUE, ref = "main"
 library(spotifystreams)
 
 #check current version
-league_baseline
+league
 
 #update leage streams
-league <- spotifystreams::pdate_streams(league)
-namelist <- names(league)
+league <- spotifystreams::update_streams(league)
+
+googlesheets4::gs4_deauth()
+
+
+spotifystreams::update_sheets(list = league, updated_coulmn = 4,
+                              sheet_id = "1GtLYZJ3OcywTGT75LMIXJwogC5CJx_biGl5l0MuVLM4",
+                              auth_token = token)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #save output to csvs
 for ( i in seq_along(league) ) {

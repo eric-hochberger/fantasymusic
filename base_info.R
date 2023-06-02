@@ -3,7 +3,7 @@
 
 league <-
   list(
-    Drake = structure(
+    DRAKE = structure(
       list(
         artist = c("VRSS", "Arcy Drive",
                    "DNL", "Keiran Ivy", "KHI INFINITE"),
@@ -37,7 +37,7 @@ league <-
       class = "data.frame",
       row.names = c(NA,-5L)
     ),
-    Graham = structure(
+    GRAHAM = structure(
       list(
         artist = c(
           "BBiche",
@@ -59,7 +59,7 @@ league <-
       class = "data.frame",
       row.names = c(NA,-5L)
     ),
-    Liam = structure(
+    LIAM = structure(
       list(
         artist = c("Nico Champagne",
                    "Wa-FU", "HIGGO", "Semma Sole", "PCRC"),
@@ -76,7 +76,7 @@ league <-
       class = "data.frame",
       row.names = c(NA,-5L)
     ),
-    Feldman = structure(
+    FELD = structure(
       list(
         artist = c("Cinya Khan",
                    "Flaujae", "Daoud", "YPC Nige", "jamesjamesjames"),
@@ -93,7 +93,7 @@ league <-
       class = "data.frame",
       row.names = c(NA,-5L)
     ),
-    Hoch = structure(
+    HOCH = structure(
       list(
         artist = c(
           "semiratuth",
@@ -115,7 +115,7 @@ league <-
       class = "data.frame",
       row.names = c(NA,-5L)
     ),
-    Trues = structure(
+    TRUES = structure(
       list(
         artist = c("Gibs", "DJ Chus",
                    "Crackazat", "Tiny Habits", "Mall Grab"),
@@ -132,7 +132,7 @@ league <-
       class = "data.frame",
       row.names = c(NA,-5L)
     ),
-    Lamstein = structure(
+    LAM = structure(
       list(
         artist = c(
           "Mel 4ever",
