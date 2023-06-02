@@ -1,6 +1,6 @@
 
 
-remove.packages('spotifystreams')
+
 #Load in functions to update streams
 devtools::install_github("liamhaller/spotifystreams", force = TRUE, ref = "main", upgrade = TRUE )
 library(spotifystreams)
@@ -9,10 +9,13 @@ library(spotifystreams)
 league_baseline
 
 #update leage streams
-spotifystreams::update_streams(league)
+league <- spotifystreams::pdate_streams(league)
+namelist <- names(league)
 
-spotifystreams::
+#save output to csvs
+for ( i in seq_along(league) ) {
+  filename <- paste0("updates/",names(league)[i], ".csv")
+  write.csv(league[[i]], file = filename, row.names = FALSE)
+}
 
-#save output to an RDS file
-saveRDS(league, file = "league_jun_1.rds")
 
