@@ -1,8 +1,6 @@
 
-
-
 #Load in functions to update streams
-devtools::install_github("liamhaller/spotifystreams", force = TRUE, ref = "main", upgrade = TRUE )
+devtools::install_github("liamhaller/spotifystreams", force = TRUE, ref = "main")
 library(spotifystreams)
 
 #check current version
