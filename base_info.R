@@ -154,3 +154,7 @@ league <-
       row.names = c(NA,-5L)
     )
   )
+
+save(league, file = "league_baseline.Rda")
+
+
