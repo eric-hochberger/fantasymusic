@@ -1,17 +1,21 @@
 
-library(purrr)
-library(rvest)
-library(rlang)
+
+
+#Load in functions to update streams
+devtools::install_github("liamhaller/spotifystreams", force = TRUE, ref = "main", upgrade = TRUE )
+library(spotifystreams)
 
 #check current version
-league
+league_baseline
 
 #update leage streams
-league <- update_streams(league)
+league <- spotifystreams::pdate_streams(league)
 namelist <- names(league)
+
 #save output to csvs
 for ( i in seq_along(league) ) {
   filename <- paste0("updates/",names(league)[i], ".csv")
   write.csv(league[[i]], file = filename, row.names = FALSE)
 }
+
 
