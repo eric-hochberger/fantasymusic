@@ -6,176 +6,179 @@ library(spotifystreams)
 library(googlesheets4)
 library(rvest)
 ## Existing League
-league <-
-  list(
-    DRAKE = structure(
-      list(
-        artist = c("VRSS", "Arcy Drive",
-                   "DNL", "Keiran Ivy", "KHI INFINITE", 'elias hix', 'Alessandra Salinas'),
-        artist_code = c(
-          "1o963gG7zP39nwOenqzPg2",
-          "7o1TBmx7Ube5h2Czlam84O",
-          "7aXH52JKx39Q5PprJmFxXu",
-          "0wzHzFNLOLex8psv09KqNK",
-          "6wthNkb9tOcsMdNtrHI5vs",
-          '7caEhKgBilB0MHIyWWWGsV',
-          '75yUCGnQnc6K7fg7qptCkO'
-        ),
-        baseline = c(1690, 141332, 10323,
-                     23428, 426971, 99472, 2493)
-      ),
-      class = "data.frame",
-      row.names = c(NA,7L)
-    ),
-    GUT = structure(
-      list(
-        artist = c("BXB LOVE", "Mike Sabbath",
-                   "Louis Millne", "Ogi", "Mochakk", "Couch", "Dogs in a Pile"),
-        artist_code = c(
-          "03k90jclqTrew2X2DFnRCC",
-          "3UTCjjwxYJioyA39EX6ciu",
-          "6oVWsUniV39LusFsC7axlb",
-          "60nDKjd690Luygtd3Fm0Cu",
-          "0rTh1tAdrEbdKZBTiiAQSo",
-          "3nYyLjhw4mYzYfJePsCJYJ",
-          "5lObmA5WxJpUj8QO6YX7yF"
-        ),
-        baseline = c(1051, 177982, 129320,
-                     227880, 826429, 160467, 20182)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-7L)
-    ),
-    GRAHAM = structure(
-      list(
-        artist = c(
-          "BBiche",
-          "Theo Kandel",
-          "Anna Bates",
-          "Peark & The Oysters",
-          "Zinadelphia",
-          "Sidney Gish"
-        ),
-        artist_code = c(
-          "1m0M7J2El2DioTfule3L41",
-          "0YEY41EVT9qE1IdDDDyF9q",
-          "4JLqUtfyFvInfcLILCOIJx",
-          "7ovvjgqrTeuMxbzIykUqDs",
-          "2bTnGGWvuVQsMVyg31rmum",
-          '2orBKFyc84jo9AZH5jarhI'
-        ),
-        baseline = c(8774, 68423, 172806,
-                     164653, 522497, 284955)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-6L)
-    ),
-    LIAM = structure(
-      list(
-        artist = c("Nico Champagne",
-                   "Wa-FU", "HIGGO", "Semma Sole", "PCRC", 'jev'),
-        artist_code = c(
-          "3aSb1wUqNgbzj9VTgYBhjY",
-          "51miQgR4HHTo5kOwFCeyJo",
-          "0f1qSxprIDtLaJfIaEJb64",
-          "6bKkC8yidNL8j94vKjLysJ",
-          "41Nu7NgAj9rJxjj7JDuXrV",
-          '6OmxkansdRyVTvo6BpZzKF',
-          "1XprynXL0SEUZCJN6OUFe6"
-        ),
-        baseline = c(353, 81884, 162736,
-                     12793, 360087, 936921, 26672)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-7L)
-    ),
-    FELD = structure(
-      list(
-        artist = c("Cinya Khan",
-                   "Flaujae", "Daoud", "YPC Nige", "jamesjamesjames"),
-        artist_code = c(
-          "7nv9u1rH0xrKytpgKfDKfz",
-          "5IQcgEvxwvq8kwy4iWCiBC",
-          "3e76yvk1gLZQhKZiUHkMsP",
-          "13crAKmlVhj6yzOO9fuOmF",
-          "0DqR5aQYPz1s2M3YbycLMJ"
-        ),
-        baseline = c(2745, 124864, 33168,
-                     30521, 630692)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-5L)
-    ),
-    HOCH = structure(
-      list(
-        artist = c(
-          "semiratuth",
-          "Emanuel Satie",
-          "MELT",
-          "Murphys Law",
-          "Ray Vaughan",
-          "Munya",
-          "mynameisntjmack"
-        ),
-        artist_code = c(
-          "6vjKiruwh9k8dDi1rYvI82",
-          "3veg7sFGWTk62Ecwj6mzij",
-          "0G7KI9I5BApiXc5Sqpyil9",
-          "1q85MRE0aEF6NfZQdlMrl1",
-          "4yYYCSCDUTypErQMZv5iSg",
-          '0JnhdXEQfVjoY1OgwTExwO',
-          "7HY1ISUuRotG01FVu0PKWh"
-        ),
-        baseline = c(1248, 97818, 140738,
-                     92716, 335847, 381765, 232979)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-7L)
-    ),
-    TRUES = structure(
-      list(
-        artist = c("Gibs", "DJ Chus",
-                   "Crackazat", "Tiny Habits", "Mall Grab", "Lawrence"),
-        artist_code = c(
-          "6UEqUjzkCgVcEgJ5avKeFv",
-          "7kxOVclB0zQamtBR0syCrg",
-          "2PagBkTVHoKFjuxtCJp3As",
-          "2QYdqWGgRorVkA8cJMMdrn",
-          "7yF6JnFPDzgml2Ytkyl5D7",
-          '5rwUYLyUq8gBsVaOUcUxpE'
-        ),
-        baseline = c(4774, 248524, 211869,
-                     195807, 780378,576888)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-6L)
-    ),
-    LAM = structure(
-      list(
-        artist = c(
-          "Mel 4ever",
-          "FKA MASH",
-          "Remmy Quinn",
-          "Ben Sterling",
-          "Justin Jay",
-          "MAZ (BR)",
-          "Sammy Virji"
-        ),
-        artist_code = c(
-          "7e34iWed5vSXh7wAoejlOJ",
-          "6tooLez7Cq2bgY60m3TJMq",
-          "6OQoRzjz71ofDCQa5OTlfq",
-          "79uJoLQkQ621xZy7MyH4uL",
-          "5k5eiijuHxrGwXp2Pz37GZ",
-          '6gYwbDKcqhLitCTlgF1oZn',
-          '1GuqTQbuixFHD6eBkFwVcb'
-        ),
-        baseline = c(4925, 166838, 33814, 55276, 309695, 551076, 860525)
-      ),
-      class = "data.frame",
-      row.names = c(NA,-7L)
-    )
-  )
+# league <-
+#   list(
+#     DRAKE = structure(
+#       list(
+#         artist = c("VRSS", "Arcy Drive",
+#                    "DNL", "Keiran Ivy", "KHI INFINITE", 'elias hix', 'Alessandra Salinas'),
+#         artist_code = c(
+#           "1o963gG7zP39nwOenqzPg2",
+#           "7o1TBmx7Ube5h2Czlam84O",
+#           "7aXH52JKx39Q5PprJmFxXu",
+#           "0wzHzFNLOLex8psv09KqNK",
+#           "6wthNkb9tOcsMdNtrHI5vs",
+#           '7caEhKgBilB0MHIyWWWGsV',
+#           '75yUCGnQnc6K7fg7qptCkO'
+#         ),
+#         baseline = c(1690, 141332, 10323,
+#                      23428, 426971, 99472, 2493)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,7L)
+#     ),
+#     GUT = structure(
+#       list(
+#         artist = c("BXB LOVE", "Mike Sabbath",
+#                    "Louis Millne", "Ogi", "Mochakk", "Couch", "Dogs in a Pile"),
+#         artist_code = c(
+#           "03k90jclqTrew2X2DFnRCC",
+#           "3UTCjjwxYJioyA39EX6ciu",
+#           "6oVWsUniV39LusFsC7axlb",
+#           "60nDKjd690Luygtd3Fm0Cu",
+#           "0rTh1tAdrEbdKZBTiiAQSo",
+#           "3nYyLjhw4mYzYfJePsCJYJ",
+#           "5lObmA5WxJpUj8QO6YX7yF"
+#         ),
+#         baseline = c(1051, 177982, 129320,
+#                      227880, 826429, 160467, 20182)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-7L)
+#     ),
+#     GRAHAM = structure(
+#       list(
+#         artist = c(
+#           "BBiche",
+#           "Theo Kandel",
+#           "Anna Bates",
+#           "Peark & The Oysters",
+#           "Zinadelphia",
+#           "Sidney Gish"
+#         ),
+#         artist_code = c(
+#           "1m0M7J2El2DioTfule3L41",
+#           "0YEY41EVT9qE1IdDDDyF9q",
+#           "4JLqUtfyFvInfcLILCOIJx",
+#           "7ovvjgqrTeuMxbzIykUqDs",
+#           "2bTnGGWvuVQsMVyg31rmum",
+#           '2orBKFyc84jo9AZH5jarhI'
+#         ),
+#         baseline = c(8774, 68423, 172806,
+#                      164653, 522497, 284955)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-6L)
+#     ),
+#     LIAM = structure(
+#       list(
+#         artist = c("Nico Champagne",
+#                    "Wa-FU", "HIGGO", "Semma Sole", "PCRC", 'jev'),
+#         artist_code = c(
+#           "3aSb1wUqNgbzj9VTgYBhjY",
+#           "51miQgR4HHTo5kOwFCeyJo",
+#           "0f1qSxprIDtLaJfIaEJb64",
+#           "6bKkC8yidNL8j94vKjLysJ",
+#           "41Nu7NgAj9rJxjj7JDuXrV",
+#           '6OmxkansdRyVTvo6BpZzKF',
+#           "1XprynXL0SEUZCJN6OUFe6"
+#         ),
+#         baseline = c(353, 81884, 162736,
+#                      12793, 360087, 936921, 26672)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-7L)
+#     ),
+#     FELD = structure(
+#       list(
+#         artist = c("Cinya Khan",
+#                    "Flaujae", "Daoud", "YPC Nige", "jamesjamesjames"),
+#         artist_code = c(
+#           "7nv9u1rH0xrKytpgKfDKfz",
+#           "5IQcgEvxwvq8kwy4iWCiBC",
+#           "3e76yvk1gLZQhKZiUHkMsP",
+#           "13crAKmlVhj6yzOO9fuOmF",
+#           "0DqR5aQYPz1s2M3YbycLMJ"
+#         ),
+#         baseline = c(2745, 124864, 33168,
+#                      30521, 630692)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-5L)
+#     ),
+#     HOCH = structure(
+#       list(
+#         artist = c(
+#           "semiratuth",
+#           "Emanuel Satie",
+#           "MELT",
+#           "Murphys Law",
+#           "Ray Vaughan",
+#           "Munya",
+#           "mynameisntjmack"
+#         ),
+#         artist_code = c(
+#           "6vjKiruwh9k8dDi1rYvI82",
+#           "3veg7sFGWTk62Ecwj6mzij",
+#           "0G7KI9I5BApiXc5Sqpyil9",
+#           "1q85MRE0aEF6NfZQdlMrl1",
+#           "4yYYCSCDUTypErQMZv5iSg",
+#           '0JnhdXEQfVjoY1OgwTExwO',
+#           "7HY1ISUuRotG01FVu0PKWh"
+#         ),
+#         baseline = c(1248, 97818, 140738,
+#                      92716, 335847, 381765, 232979)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-7L)
+#     ),
+#     TRUES = structure(
+#       list(
+#         artist = c("Gibs", "DJ Chus",
+#                    "Crackazat", "Tiny Habits", "Mall Grab", "Lawrence"),
+#         artist_code = c(
+#           "6UEqUjzkCgVcEgJ5avKeFv",
+#           "7kxOVclB0zQamtBR0syCrg",
+#           "2PagBkTVHoKFjuxtCJp3As",
+#           "2QYdqWGgRorVkA8cJMMdrn",
+#           "7yF6JnFPDzgml2Ytkyl5D7",
+#           '5rwUYLyUq8gBsVaOUcUxpE'
+#         ),
+#         baseline = c(4774, 248524, 211869,
+#                      195807, 780378,576888)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-6L)
+#     ),
+#     LAM = structure(
+#       list(
+#         artist = c(
+#           "Mel 4ever",
+#           "FKA MASH",
+#           "Remmy Quinn",
+#           "Ben Sterling",
+#           "Justin Jay",
+#           "MAZ (BR)",
+#           "Sammy Virji"
+#         ),
+#         artist_code = c(
+#           "7e34iWed5vSXh7wAoejlOJ",
+#           "6tooLez7Cq2bgY60m3TJMq",
+#           "6OQoRzjz71ofDCQa5OTlfq",
+#           "79uJoLQkQ621xZy7MyH4uL",
+#           "5k5eiijuHxrGwXp2Pz37GZ",
+#           '6gYwbDKcqhLitCTlgF1oZn',
+#           '1GuqTQbuixFHD6eBkFwVcb'
+#         ),
+#         baseline = c(4925, 166838, 33814, 55276, 309695, 551076, 860525)
+#       ),
+#       class = "data.frame",
+#       row.names = c(NA,-7L)
+#     )
+#   )
+
+league <- readRDS("league.rds")
+
 
 # read in new team submissions
 new_teams <- read_csv('/Users/Eric.Hochberger/Downloads/Fantasy Music League Sign-up 4.csv')
@@ -317,16 +320,15 @@ scoring_sum <- tibble::tribble(
   ~name, ~avg_formula
 )
 
-new_team_dfs[1]$Eric %>% select(-artist_code)
 
 for (i in 1:length(new_team_dfs)) {
   googlesheets4::range_write('https://docs.google.com/spreadsheets/d/1GtLYZJ3OcywTGT75LMIXJwogC5CJx_biGl5l0MuVLM4/edit#gid=0', as.data.frame(new_team_dfs[[i]] %>% select(-artist_code)), sheet = new_teams[i], range = "A3:D8")
 
-  googlesheets4::range_write('https://docs.google.com/spreadsheets/d/1GtLYZJ3OcywTGT75LMIXJwogC5CJx_biGl5l0MuVLM4/edit#gid=0', scoring, sheet = new_teams[i], range = "D20", reformat = FALSE)
+  googlesheets4::range_write('https://docs.google.com/spreadsheets/d/1GtLYZJ3OcywTGT75LMIXJwogC5CJx_biGl5l0MuVLM4/edit#gid=0', scoring, sheet = new_teams[i], range = "B20", reformat = FALSE)
 
 new_scoring_sum_row <- tibble(
   name = new_teams[i],
-  avg_formula = paste0('=AVERAGE(', new_teams[i], '!E21:E25)')
+  avg_formula = paste0('=AVERAGE(', new_teams[i], '!C21:C25)')
 )
 
 scoring_sum <- bind_rows(scoring_sum, new_scoring_sum_row)
@@ -349,4 +351,5 @@ spotifystreams::update_sheets(list = new_league, updated_coulmn = 4,
                               sheet_id = "1GtLYZJ3OcywTGT75LMIXJwogC5CJx_biGl5l0MuVLM4",
                               auth_token = token)
 
+saveRDS(league, file = "league.rds")
 
