@@ -20,10 +20,11 @@ library(googlesheets4)
 # Authentication ----------------------------------------------------------
 
 #initiate authentication
-source('googlesheets_authentication.R')
+source(paste0(getwd(),'/Scripts/', 'googlesheets_authentication.R'))
 
 #Load local functions
-source('helper_functions.R')
+source(paste0(getwd(),'/Scripts/', 'helper_functions.R'))
+
 
 # Load databases ---------------------------------------------------
 
