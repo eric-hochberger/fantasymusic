@@ -36,3 +36,5 @@ rsconnect/
 #authorization token
 .httr-oauth
 .secrets
+
+.DS_Store

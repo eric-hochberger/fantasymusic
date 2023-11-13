@@ -32,25 +32,6 @@ spotifystreams::update_sheets(list = league, updated_coulmn = 4,
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #save output to csvs
 for ( i in seq_along(league) ) {
   filename <- paste0("updates/",names(league)[i], ".csv")
