@@ -2,6 +2,7 @@
 
 
 library(googlesheets4)
+library(gargle)
 
 ##Initial setup of secret token, done once
 
