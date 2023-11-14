@@ -51,7 +51,7 @@ new_players <-
 
 #Replace spotify URL with artist code
 new_players <-
-  new_players %>% mutate(across(starts_with('artist'),  parse_spotify_link))
+  new_players %>% mutate(across(starts_with('artist'),  spotifystreams::parse_spotify_link))
 
 
 # Validate entries ---------------------------------------
@@ -87,18 +87,16 @@ for(i in 1:NROW(new_players)){ #This level is for each entry
 }
 
 #TODO
-
 ## function to message players input was invalid, should be added to helper functions
 
+# message <- paste("Hi, unfortunately the artist you submitted for the <",
+#                  ifelse(j == 1, "25k", ifelse(j == 2 || j == 3 || j == 4, "250k", "1m")),
+#                  "category has", current_listeners, "Monthly Listeners.
+#                        Please try again or feel free to reach out to me at eahochberger@gmail.com if you believe this to be a mistake.
+#                        Thanks, Eric", sep = " ")
 
-message <- paste("Hi, unfortunately the artist you submitted for the <",
-                 ifelse(j == 1, "25k", ifelse(j == 2 || j == 3 || j == 4, "250k", "1m")),
-                 "category has", current_listeners, "Monthly Listeners.
-                       Please try again or feel free to reach out to me at eahochberger@gmail.com if you believe this to be a mistake.
-                       Thanks, Eric", sep = " ")
 
-
-#### Remove invalid entries from list
+#Remove invalid entries from list
 new_players <- new_players[ ! new_players$tempid %in% issues_df$player_to_remove, ]
 
 
@@ -123,6 +121,8 @@ new_players <- new_players %>%
 googlesheets4::sheet_append(ss = playerdatabase,
                             data = new_players,
                             sheet = 1)
+
+#TODO add artists to player active artist list
 
 ### add Artists database ###
 artistdatabase <- "https://docs.google.com/spreadsheets/d/18cLVfPIy0EAG3lQzxlSRDRAi5kGezcgML7BU3UkikF8/edit#gid=0"
