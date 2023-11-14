@@ -19,7 +19,7 @@ library(googlesheets4)
 # Authentication ----------------------------------------------------------
 
 #initiate authentication
-source(paste0(getwd(),'/Scripts/', 'googlesheets_authentication.R'))
+source(paste0(getwd(),'/Scripts/', 'googleauth.R'))
 
 #Load local functions
 source(paste0(getwd(),'/Scripts/', 'helper_functions.R'))
@@ -39,7 +39,9 @@ artist_update <- read_sheet(artistdatabase) %>%
   rename(!!todays_date := streams)
 
 
-googlesheets4::sheet_write(ss =  artistdatabase, data = artist_update, sheet = 1)
+googlesheets4::sheet_write(ss =  artistdatabase,
+                           data = artist_update,
+                           sheet = 1)
 
 
 
